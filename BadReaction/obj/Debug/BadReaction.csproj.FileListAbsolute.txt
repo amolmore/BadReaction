@@ -1,0 +1,6 @@
+E:\Projects\BadReaction\BadReaction\bin\BadReaction.dll.config
+E:\Projects\BadReaction\BadReaction\bin\BadReaction.dll
+E:\Projects\BadReaction\BadReaction\bin\BadReaction.pdb
+E:\Projects\BadReaction\BadReaction\obj\Debug\BadReaction.csprojResolveAssemblyReference.cache
+E:\Projects\BadReaction\BadReaction\obj\Debug\BadReaction.dll
+E:\Projects\BadReaction\BadReaction\obj\Debug\BadReaction.pdb

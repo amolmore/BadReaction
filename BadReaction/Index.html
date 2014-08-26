@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Bad Reaction</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+</head>
+<body>
+    <input type="search" name="searchTerm" placeholder="Nexito" id="txtSearchTerm" />
+    <input type="button" name="submit" id="btnSubmit" value="Search" />
+    <article>
+        <header>
+            <h3><span id="DrugHeader"></span></h3>
+        </header>
+        <ul id="ReactionList">
+
+        </ul>
+    </article>
+    <script type="text/javascript">
+        $(function () {
+
+
+            $("#txtSearchTerm").autocomplete({
+                source:
+                function (request, response) {
+                    $.ajax({
+                        url: "http://localhost:57501/api/Drug",
+                        data: { query: request.term },
+                        dataType: 'json',
+                        type: 'GET'
+                        , success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item,
+                                    value: item
+                                }
+                            }))
+                        }
+                    });
+
+
+                },
+                success: function (data) {
+                    response(data);
+                },
+                select: function (event, ui) {
+                    $.ajax({
+                        url: "http://localhost:57501/api/Drug",
+                        data: { drugName: ui.item.value },
+                        dataType: 'json',
+                        type: 'GET'
+                       , success: function (data) {
+                           $("#DrugHeader").text(data[0]["DrugName"]);
+                           $.each(data, function (idx, obj) {
+                               $("#ReactionList").append("<li>" + obj.ReactionName + "</li>");
+                               
+                           });
+                           
+                       }
+                    });
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>
